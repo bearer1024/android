@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">nasaImage</string>
+    <string name="test_image_title">Juno Closes in on Jupiter</string>
+    <string name="test_image_date">Mon, 04 Jul 2016 11:54</string>
+    <string name="test_image_description">This is the final view taken by the JunoCam instrument on
+        NASA\'s Juno spacecraft before Juno\'s
+        instruments were powered down in preparation for orbit insertion on July 4.</string>
+</resources>

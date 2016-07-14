@@ -1,0 +1,235 @@
+[
+    {
+        "outputFile": "/Users/bearer1024/AndroidStudioProjects/NasaDailyImage-master/app/build/intermediates/res/merged/debug/values/values.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 53,
+                    "endOffset": 104
+                },
+                "from": {
+                    "file": "/Users/bearer1024/AndroidStudioProjects/NasaDailyImage-master/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 1,
+                        "startColumn": 4,
+                        "startOffset": 16,
+                        "endColumn": 53,
+                        "endOffset": 65
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 109,
+                    "endColumn": 47,
+                    "endOffset": 152
+                },
+                "from": {
+                    "file": "/Users/bearer1024/AndroidStudioProjects/NasaDailyImage-master/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 4,
+                        "startOffset": 1739,
+                        "endColumn": 47,
+                        "endOffset": 1782
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 4,
+                    "startColumn": 4,
+                    "startOffset": 157,
+                    "endColumn": 59,
+                    "endOffset": 212
+                },
+                "from": {
+                    "file": "/Users/bearer1024/AndroidStudioProjects/NasaDailyImage-master/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 9,
+                        "startColumn": 4,
+                        "startOffset": 1908,
+                        "endColumn": 59,
+                        "endOffset": 1963
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 5,
+                    "startColumn": 4,
+                    "startOffset": 217,
+                    "endColumn": 69,
+                    "endOffset": 282
+                },
+                "from": {
+                    "file": "/Users/bearer1024/AndroidStudioProjects/NasaDailyImage-master/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 8,
+                        "startColumn": 4,
+                        "startOffset": 1838,
+                        "endColumn": 69,
+                        "endOffset": 1903
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 6,
+                    "startColumn": 4,
+                    "startOffset": 287,
+                    "endColumn": 50,
+                    "endOffset": 333
+                },
+                "from": {
+                    "file": "/Users/bearer1024/AndroidStudioProjects/NasaDailyImage-master/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 7,
+                        "startColumn": 4,
+                        "startOffset": 1787,
+                        "endColumn": 50,
+                        "endOffset": 1833
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 7,
+                    "startColumn": 4,
+                    "startOffset": 338,
+                    "endColumn": 55,
+                    "endOffset": 389
+                },
+                "from": {
+                    "file": "/Users/bearer1024/AndroidStudioProjects/NasaDailyImage-master/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 5,
+                        "startColumn": 4,
+                        "startOffset": 1683,
+                        "endColumn": 55,
+                        "endOffset": 1734
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 8,
+                    "startColumn": 4,
+                    "startOffset": 394,
+                    "endColumn": 81,
+                    "endOffset": 471
+                },
+                "from": {
+                    "file": "/Users/bearer1024/AndroidStudioProjects/NasaDailyImage-master/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 11,
+                        "startColumn": 4,
+                        "startOffset": 2049,
+                        "endColumn": 81,
+                        "endOffset": 2126
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 9,
+                    "startColumn": 4,
+                    "startOffset": 476,
+                    "endColumn": 80,
+                    "endOffset": 552
+                },
+                "from": {
+                    "file": "/Users/bearer1024/AndroidStudioProjects/NasaDailyImage-master/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 10,
+                        "startColumn": 4,
+                        "startOffset": 1968,
+                        "endColumn": 80,
+                        "endOffset": 2044
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 10,
+                    "startColumn": 4,
+                    "startOffset": 557,
+                    "endColumn": 73,
+                    "endOffset": 626
+                },
+                "from": {
+                    "file": "/Users/bearer1024/AndroidStudioProjects/NasaDailyImage-master/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 130,
+                        "endColumn": 73,
+                        "endOffset": 199
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 11,
+                    "startColumn": 4,
+                    "startOffset": 631,
+                    "endColumn": 1478,
+                    "endOffset": 2105
+                },
+                "from": {
+                    "file": "/Users/bearer1024/AndroidStudioProjects/NasaDailyImage-master/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 204,
+                        "endColumn": 1478,
+                        "endOffset": 1678
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 12,
+                    "startColumn": 4,
+                    "startOffset": 2110,
+                    "endColumn": 59,
+                    "endOffset": 2165
+                },
+                "from": {
+                    "file": "/Users/bearer1024/AndroidStudioProjects/NasaDailyImage-master/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 70,
+                        "endColumn": 59,
+                        "endOffset": 125
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 13,
+                    "startColumn": 4,
+                    "startOffset": 2170,
+                    "endColumn": 56,
+                    "endOffset": 2222
+                },
+                "from": {
+                    "file": "/Users/bearer1024/AndroidStudioProjects/NasaDailyImage-master/app/src/main/res/values/styles.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 17,
+                        "endColumn": 57,
+                        "endOffset": 70
+                    }
+                }
+            }
+        ]
+    }
+]
