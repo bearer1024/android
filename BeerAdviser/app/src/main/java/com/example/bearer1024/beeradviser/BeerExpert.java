@@ -12,9 +12,14 @@ public class BeerExpert {
         if(color.equals("amber")){
             brands.add("Jack Amber");
             brands.add("Red Moose");
-        } else {
+        } else if(color.equals("light")){
             brands.add("Jail Pale Ale");
             brands.add("Gout Stout");
+        } else if (color.equals("brown")){
+            brands.add("whisky");
+            brands.add("votga");
+        } else {
+            brands.add("wine");
         }
         return brands;
     }
