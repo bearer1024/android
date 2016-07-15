@@ -1,2 +1,1 @@
-# android
-#what's wrong
+# all about android applications
