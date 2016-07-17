@@ -1,4 +1,4 @@
-package campus.leicester;
+package campus.leicester.com;
 
 import android.app.Activity;
 import android.content.Intent;

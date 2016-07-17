@@ -1,4 +1,4 @@
-package campus.leicester;
+package campus.leicester.com;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
