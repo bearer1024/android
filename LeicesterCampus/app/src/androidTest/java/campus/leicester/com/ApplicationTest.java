@@ -1,4 +1,4 @@
-package bscorp.appbase;
+package campus.leicester.com;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

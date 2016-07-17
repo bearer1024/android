@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AppBase</string>
+    <string name="app_name">LeicesterCampus</string>
 
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
