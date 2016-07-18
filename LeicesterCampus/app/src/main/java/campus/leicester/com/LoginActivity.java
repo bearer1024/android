@@ -55,7 +55,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import campus.leicester.R;
+import campus.leicester.com.R;
 import utils.Constants;
 import utils.ValidateUserInfo;
 

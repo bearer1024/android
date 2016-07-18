@@ -12,7 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import campus.leicester.R;
+import campus.leicester.com.R;
 import utils.CheckNetwork;
 import utils.Constants;
 import utils.ValidateUserInfo;
