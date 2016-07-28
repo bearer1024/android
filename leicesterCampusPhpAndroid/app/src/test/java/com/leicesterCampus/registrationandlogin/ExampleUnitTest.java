@@ -1,4 +1,4 @@
-package com.startingandroid.registrationandlogin;
+package com.leicesterCampus.registrationandlogin;
 
 import org.junit.Test;
 

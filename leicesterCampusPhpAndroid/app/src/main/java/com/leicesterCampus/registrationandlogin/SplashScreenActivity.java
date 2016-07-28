@@ -1,4 +1,4 @@
-package com.startingandroid.registrationandlogin;
+package com.leicesterCampus.registrationandlogin;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ImageView;
 
 public class SplashScreenActivity extends Activity {
 

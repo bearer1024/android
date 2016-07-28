@@ -1,4 +1,4 @@
-package com.startingandroid.registrationandlogin;
+package com.leicesterCampus.registrationandlogin;
 
 import android.content.Context;
 import android.content.SharedPreferences;

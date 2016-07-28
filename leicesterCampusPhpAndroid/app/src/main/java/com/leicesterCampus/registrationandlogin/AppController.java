@@ -1,9 +1,6 @@
-package com.startingandroid.registrationandlogin;
+package com.leicesterCampus.registrationandlogin;
 
 import android.app.Application;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.text.TextUtils;
 
 import com.android.volley.Request;
