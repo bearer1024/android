@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RegistrationAndLogin</string>
+    <string name="app_name">LeicesterCampus</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_login">Sign in</string>
 
