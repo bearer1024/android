@@ -8,16 +8,19 @@
 
 
         <EditText
+            android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="title of the news"/>
         <EditText
+            android:id="@+id/newsContent"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:hint="input your content here"
             android:gravity="top"/>
         <EditText
+            android:id="@+id/relativeLink"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="relative link"/>
@@ -25,11 +28,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Button
+            android:id="@+id/backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="back"
             android:layout_weight="1"/>
         <Button
+            android:id="@+id/submitButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="create"

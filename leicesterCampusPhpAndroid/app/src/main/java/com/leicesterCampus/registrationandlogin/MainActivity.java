@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         btnCreateNews.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent intent = new Intent(getApplicationContext(),
+                Intent intent = new Intent(MainActivity.this,
                         CreateNewsActivity.class);
                 startActivity(intent);
                 finish();
