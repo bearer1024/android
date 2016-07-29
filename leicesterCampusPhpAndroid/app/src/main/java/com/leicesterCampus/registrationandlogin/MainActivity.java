@@ -9,7 +9,8 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnLogout;
+    private Button btnLogout,btnCreateNews;
+
     private Session session;
 
     @Override
@@ -18,6 +19,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolBar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolBar);
+        btnCreateNews = (Button)findViewById(R.id.createNewsButton);
+        btnCreateNews.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(getApplicationContext(),
+                        CreateNewsActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
         btnLogout = (Button) findViewById(R.id.btnLogout);
         session = new Session(MainActivity.this);
 

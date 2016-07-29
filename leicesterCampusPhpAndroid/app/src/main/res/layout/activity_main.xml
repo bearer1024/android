@@ -21,6 +21,11 @@
             android:textStyle="bold" />
 
         <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/createNewsButton"
+            android:text="createNews"/>
+        <Button
             android:id="@+id/btnLogout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

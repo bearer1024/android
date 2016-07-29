@@ -4,15 +4,20 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
     <application
-        android:name="com.leicesterCampus.registrationandlogin.AppController"
+        android:name=".AppController"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.leicesterCampus.registrationandlogin.SplashScreenActivity"
+            android:name=".SplashScreenActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -22,17 +27,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.leicesterCampus.registrationandlogin.LoginActivity"
+            android:name=".LoginActivity"
             android:label="@string/title_activity_login" />
         <activity
-            android:name="com.leicesterCampus.registrationandlogin.RegistrationActivity"
+            android:name=".RegistrationActivity"
             android:label="@string/title_activity_registration"
-            android:theme="@style/AppTheme"></activity>
-
+            android:theme="@style/AppTheme" />
         <activity
-            android:name="com.leicesterCampus.registrationandlogin.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".CreateNewsActivity"></activity>
     </application>
 
 </manifest>
