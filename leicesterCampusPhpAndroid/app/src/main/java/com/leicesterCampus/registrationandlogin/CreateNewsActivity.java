@@ -79,7 +79,7 @@ public class CreateNewsActivity extends AppCompatActivity {
                                        final String newsTitle) {
         String tag_string_req = "req_createNews";
         session = new Session(CreateNewsActivity.this);
-        final String username = session.getUsername();
+//        final String username = session.getUsername();
         pDialog.setMessage("publishing news now");
         showDialog();
 
