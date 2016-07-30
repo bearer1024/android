@@ -7,6 +7,16 @@ import android.preference.PreferenceManager;
 public class Session {
     private SharedPreferences sp;
     private SharedPreferences.Editor spEditor;
+    private String username;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
 
     public Session(Context context) {
         sp = PreferenceManager.getDefaultSharedPreferences(context);
@@ -19,6 +29,7 @@ public class Session {
         spEditor.commit();
         return true;
     }
+
 
     public boolean getLoggedIn() {
         return sp.getBoolean("is_logged_in", false);

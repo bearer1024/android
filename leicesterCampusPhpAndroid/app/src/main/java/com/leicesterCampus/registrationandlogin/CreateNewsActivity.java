@@ -26,6 +26,9 @@ public class CreateNewsActivity extends AppCompatActivity {
     private EditText title,content,link;
     private Button backbtn,submitbtn;
     private ProgressDialog pDialog;
+    private Session session;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +38,8 @@ public class CreateNewsActivity extends AppCompatActivity {
         link = (EditText)findViewById(R.id.relativeLink);
         backbtn = (Button)findViewById(R.id.backButton);
         submitbtn = (Button)findViewById(R.id.submitButton);
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
 
         submitbtn.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -42,6 +47,7 @@ public class CreateNewsActivity extends AppCompatActivity {
                 String newsTitle = title.getText().toString();
                 String newsContent = content.getText().toString();
                 String newsLink = link.getText().toString();
+
 
                 if(!newsTitle.isEmpty()&&!newsContent.isEmpty()){
                     if(!newsLink.isEmpty()){
@@ -68,12 +74,13 @@ public class CreateNewsActivity extends AppCompatActivity {
     private void createNewsFromAndroid(final String newsContent,final String newsLink,
                                        final String newsTitle) {
         String tag_string_req = "req_createNews";
-
+        session = new Session(CreateNewsActivity.this);
+        final String username = session.getUsername();
         pDialog.setMessage("publishing news now");
         showDialog();
 
         StringRequest strReq = new StringRequest(Request.Method.POST,
-                AppURLs.URL_addnews, new Response.Listener<String>() {
+                AppURLs.URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 hideDialog();
@@ -112,9 +119,9 @@ public class CreateNewsActivity extends AppCompatActivity {
                 Map<String,String> params = new HashMap<String,String>();
                 params.put("tag", "createNews");
                 params.put("newsContent",newsContent);
-                params.put("newsLink",newsTitle);
+                params.put("newsLink",newsLink);
                 params.put("newsTitle",newsTitle);
-
+                params.put("userName",username);
                 return params;
             }
 

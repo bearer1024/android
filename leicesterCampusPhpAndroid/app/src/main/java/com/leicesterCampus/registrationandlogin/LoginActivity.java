@@ -92,6 +92,11 @@ public class LoginActivity extends AppCompatActivity {
                 try {
                     JSONObject jObj = new JSONObject(response);
                     String userId = jObj.getString("user_id");
+                    String username = jObj.getString("username");
+
+                    if(username != null) {
+                        session.setUsername(username);
+                    }
 
                     if (userId != null) {
                         session.setLogin(true);
