@@ -35,7 +35,7 @@ public class CreateNewsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_news);
         title = (EditText)findViewById(R.id.title);
         content = (EditText)findViewById(R.id.newsContent);
-        link = (EditText)findViewById(R.id.relativeLink);
+//        link = (EditText)findViewById(R.id.relativeLink);
         backbtn = (Button)findViewById(R.id.backButton);
         submitbtn = (Button)findViewById(R.id.submitButton);
         pDialog = new ProgressDialog(this);
@@ -46,13 +46,14 @@ public class CreateNewsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String newsTitle = title.getText().toString();
                 String newsContent = content.getText().toString();
-                String newsLink = link.getText().toString();
+//                String newsLink = link.getText().toString();
 
 
                 if(!newsTitle.isEmpty()&&!newsContent.isEmpty()){
-                    if(!newsLink.isEmpty()){
-                       createNewsFromAndroid(newsContent,newsLink,newsTitle);
-                    }
+//                    if(!newsLink.isEmpty()){
+//                       createNewsFromAndroid(newsContent,newsLink,newsTitle);
+//                    }
+                    createNewsFromAndroid(newsContent,newsTitle);
                 }else{
                     Snackbar.make(v,"title and content could not be null",
                             Snackbar.LENGTH_LONG).show();
@@ -71,7 +72,10 @@ public class CreateNewsActivity extends AppCompatActivity {
         });
     }
 
-    private void createNewsFromAndroid(final String newsContent,final String newsLink,
+//    private void createNewsFromAndroid(final String newsContent,final String newsLink,
+//                                       final String newsTitle) {
+
+    private void createNewsFromAndroid(final String newsContent,
                                        final String newsTitle) {
         String tag_string_req = "req_createNews";
         session = new Session(CreateNewsActivity.this);
@@ -119,9 +123,9 @@ public class CreateNewsActivity extends AppCompatActivity {
                 Map<String,String> params = new HashMap<String,String>();
                 params.put("tag", "createNews");
                 params.put("newsContent",newsContent);
-                params.put("newsLink",newsLink);
+//                params.put("newsLink",newsLink);
                 params.put("newsTitle",newsTitle);
-                params.put("userName",username);
+//                params.put("userName",username);
                 return params;
             }
 

@@ -19,11 +19,11 @@
             android:layout_weight="1"
             android:hint="input your content here"
             android:gravity="top"/>
-        <EditText
+        <!--<EditText
             android:id="@+id/relativeLink"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="relative link"/>
+            android:hint="relative link"/>-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
