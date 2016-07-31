@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -29,16 +30,25 @@ public class ReadNewsActivity extends AppCompatActivity
         implements ListView.OnItemClickListener{
 
     private ListView listView;
-    private Session session;
-    private ProgressDialog pDialog;
+    private Button buttonBackToMenu;
     private String JSON_STRING;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read_news);
         listView = (ListView)findViewById(R.id.readListView);
+        buttonBackToMenu = (Button)findViewById(R.id.buttonBackTOMenu);
         listView.setOnItemClickListener(this);
         getJson();
+
+        buttonBackToMenu.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(ReadNewsActivity.this,MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     private void getJson(){
