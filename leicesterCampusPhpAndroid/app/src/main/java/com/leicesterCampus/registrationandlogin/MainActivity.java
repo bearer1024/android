@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnLogout,btnCreateNews;
+    private Button btnLogout,btnCreateNews,btnReadNews;
 
     private Session session;
 
@@ -19,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolBar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolBar);
+
+        //creating news logic
         btnCreateNews = (Button)findViewById(R.id.createNewsButton);
         btnCreateNews.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -29,6 +31,20 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        //reading news logic
+        btnReadNews = (Button)findViewById(R.id.readNewsButton);
+        btnReadNews.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(MainActivity.this,
+                        ReadNewsActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        //logout logic
         btnLogout = (Button) findViewById(R.id.btnLogout);
         session = new Session(MainActivity.this);
 

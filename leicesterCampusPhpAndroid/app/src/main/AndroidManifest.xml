@@ -37,7 +37,9 @@
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme" />
-        <activity android:name=".CreateNewsActivity"></activity>
+        <activity android:name=".CreateNewsActivity" />
+        <activity android:name=".ReadNewsActivity" />
+        <activity android:name=".ShowNews"></activity>
     </application>
 
 </manifest>
