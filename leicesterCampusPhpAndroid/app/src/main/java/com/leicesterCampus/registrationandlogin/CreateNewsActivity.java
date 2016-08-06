@@ -2,12 +2,19 @@ package com.leicesterCampus.registrationandlogin;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.media.Image;
+import android.net.Uri;
+import android.os.AsyncTask;
+import android.provider.MediaStore;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -18,16 +25,24 @@ import com.android.volley.toolbox.StringRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CreateNewsActivity extends AppCompatActivity {
+public class CreateNewsActivity extends AppCompatActivity implements View.OnClickListener{
 
+    public static final String UPLOAD_KEY = "image";
     private EditText title,content,link;
-    private Button backbtn,submitbtn;
+    private Button buttonBackToMenu, buttonSubmit,buttonImageChoose,
+            buttonImageUpload,buttonViewImage;
     private ProgressDialog pDialog;
+    private int PICK_IMAGE_REQUEST = 1;
+    private Bitmap bitmap;
+    private Uri filePath;
     private Session session;
-
+    private ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,16 +51,24 @@ public class CreateNewsActivity extends AppCompatActivity {
         title = (EditText)findViewById(R.id.title);
         content = (EditText)findViewById(R.id.newsContent);
 //        link = (EditText)findViewById(R.id.relativeLink);
-        backbtn = (Button)findViewById(R.id.backButton);
-        submitbtn = (Button)findViewById(R.id.submitButton);
+        buttonBackToMenu = (Button)findViewById(R.id.backButton);
+        buttonSubmit = (Button)findViewById(R.id.submitButton);
+        buttonImageChoose = (Button)findViewById(R.id.chooseFile);
+        buttonImageUpload= (Button)findViewById(R.id.uploadButton);
+        buttonViewImage = (Button)findViewById(R.id.buttonViewImage);
+        imageView = (ImageView)findViewById(R.id.imageView);
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
 
-        submitbtn.setOnClickListener(new View.OnClickListener(){
+        buttonViewImage.setOnClickListener(this);
+        buttonImageChoose.setOnClickListener(this);
+        buttonImageUpload.setOnClickListener(this);
+        buttonSubmit.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 String newsTitle = title.getText().toString();
                 String newsContent = content.getText().toString();
+
 //                String newsLink = link.getText().toString();
 
 
@@ -53,7 +76,8 @@ public class CreateNewsActivity extends AppCompatActivity {
 //                    if(!newsLink.isEmpty()){
 //                       createNewsFromAndroid(newsContent,newsLink,newsTitle);
 //                    }
-                    createNewsFromAndroid(newsContent,newsTitle);
+//                    createNewsFromAndroid(newsContent,newsTitle);
+                    creadNewsFromAndroidWithImage(newsContent,newsTitle,bitmap);
                 }else{
                     Snackbar.make(v,"title and content could not be null",
                             Snackbar.LENGTH_LONG).show();
@@ -61,7 +85,7 @@ public class CreateNewsActivity extends AppCompatActivity {
             }
         });
 
-        backbtn.setOnClickListener(new View.OnClickListener(){
+        buttonBackToMenu.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(CreateNewsActivity.this,
@@ -74,6 +98,68 @@ public class CreateNewsActivity extends AppCompatActivity {
 
 //    private void createNewsFromAndroid(final String newsContent,final String newsLink,
 //                                       final String newsTitle) {
+    private void creadNewsFromAndroidWithImage(final String newsContent,
+                                               final String newsTitle,
+                                               final Bitmap bitmap){
+        String tag_string_req = "req_createNews";
+        session = new Session(CreateNewsActivity.this);
+//        final String username = session.getUsername();
+        pDialog.setMessage("publishing news now");
+        final String uploadImage = getStringImage(bitmap);
+        showDialog();
+
+        StringRequest strReq = new StringRequest(Request.Method.POST,
+                AppURLs.URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                hideDialog();
+
+                try {
+                    JSONObject jObj = new JSONObject(response);
+                    boolean error = jObj.getBoolean("error");
+                    if(!error){
+
+                        Intent intent = new Intent(CreateNewsActivity.
+                                this,MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }else{
+                        String errorMsg = jObj.getString("error_msg");
+                        Toast.makeText(getApplicationContext(),errorMsg,
+                                Toast.LENGTH_LONG).show();
+                    }
+                }catch (JSONException e){
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(),
+                        error.getMessage(), Toast.LENGTH_LONG).show();
+                hideDialog();
+            }
+        }){
+
+            @Override
+            protected Map<String,String> getParams() {
+                //Posting params to createNews url
+                Map<String,String> params = new HashMap<String,String>();
+                params.put("tag", "createNews");
+                params.put("newsContent",newsContent);
+//                params.put("newsLink",newsLink);
+                params.put("newsTitle",newsTitle);
+                params.put("image",uploadImage);
+//                params.put("userName",username);
+                return params;
+            }
+
+        };
+
+        AppController.getInstance().addToRequestQueue(strReq,tag_string_req);
+    }
+
 
     private void createNewsFromAndroid(final String newsContent,
                                        final String newsTitle) {
@@ -134,6 +220,84 @@ public class CreateNewsActivity extends AppCompatActivity {
         AppController.getInstance().addToRequestQueue(strReq,tag_string_req);
     }
 
+    @Override
+    public void onClick(View v){
+        if(v == buttonImageChoose){
+            showFileChooser();
+        }
+        if(v == buttonImageUpload){
+            uploadImage();
+        }
+    }
+
+    private void showFileChooser() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent,"select Picture"),PICK_IMAGE_REQUEST);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode,int resultCode,Intent data){
+        super.onActivityResult(requestCode,resultCode,data);
+
+        if(requestCode == PICK_IMAGE_REQUEST && resultCode ==
+                RESULT_OK && data != null && data.getData()!=null){
+            filePath = data.getData();
+            try{
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),filePath);
+                imageView.setImageBitmap(bitmap);
+            }catch(IOException e){
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public String getStringImage(Bitmap bitmap){
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
+        byte[] imageBytes = byteArrayOutputStream.toByteArray();
+        String encodedImage = Base64.encodeToString(imageBytes,Base64.DEFAULT);
+        return encodedImage;
+    }
+
+    private void uploadImage(){
+        class UploadImage extends AsyncTask<Bitmap,Void,String> {
+
+            ProgressDialog loading;
+            RequestHandler rh = new RequestHandler();
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                loading = ProgressDialog.show(CreateNewsActivity.this,
+                        "Uploading Image", "Please wait...",true,true);
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                loading.dismiss();
+                Toast.makeText(getApplicationContext(),s,Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            protected String doInBackground(Bitmap... params) {
+                Bitmap bitmap = params[0];
+                String uploadImage = getStringImage(bitmap);
+
+                HashMap<String,String> data = new HashMap<>();
+                data.put(UPLOAD_KEY, uploadImage);
+
+                String result = rh.sendPostRequest(AppURLs.URL,data);
+
+                return result;
+            }
+        }
+
+        UploadImage ui = new UploadImage();
+        ui.execute(bitmap);
+    }
     private void showDialog(){
         if(!pDialog.isShowing())
             pDialog.show();
