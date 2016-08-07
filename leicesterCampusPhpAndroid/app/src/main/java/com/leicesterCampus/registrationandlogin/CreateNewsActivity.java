@@ -226,7 +226,7 @@ public class CreateNewsActivity extends AppCompatActivity implements View.OnClic
             showFileChooser();
         }
         if(v == buttonImageUpload){
-            uploadImage();
+//            uploadImage();
         }
     }
 
@@ -261,7 +261,7 @@ public class CreateNewsActivity extends AppCompatActivity implements View.OnClic
         return encodedImage;
     }
 
-    private void uploadImage(){
+    /*private void uploadImage(){
         class UploadImage extends AsyncTask<Bitmap,Void,String> {
 
             ProgressDialog loading;
@@ -297,7 +297,7 @@ public class CreateNewsActivity extends AppCompatActivity implements View.OnClic
 
         UploadImage ui = new UploadImage();
         ui.execute(bitmap);
-    }
+    }*/
     private void showDialog(){
         if(!pDialog.isShowing())
             pDialog.show();
