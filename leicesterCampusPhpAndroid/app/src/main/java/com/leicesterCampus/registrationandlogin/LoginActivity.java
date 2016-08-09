@@ -67,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
                 String password = password_to_login.getText().toString();
 
                 if (email.trim().length() > 0 && password.trim().length() > 0) {
-                    checkLogin(email, password);
+                    checkLogin(email, password,v);
                 } else {
                     Snackbar.make(v, "Please enter the credentials!", Snackbar.LENGTH_LONG)
                             .show();
@@ -76,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void checkLogin(final String email, final String password) {
+    private void checkLogin(final String email, final String password, final View view) {
         String tag_string_req = "req_login";
 
         progressDialog.setMessage("Logging in ...");
@@ -90,8 +90,12 @@ public class LoginActivity extends AppCompatActivity {
                 hideDialog();
 
                 try {
-                    JSONObject jObj = new JSONObject(response);
-                    String userId = jObj.getString("user_id");
+                    JSONObject jsonObject = new JSONObject(response);
+                    Boolean FailToLogin= jsonObject.getBoolean("error");
+                if(!FailToLogin) {
+                    try {
+                        JSONObject jObj = new JSONObject(response);
+                        String userId = jObj.getString("user_id");
 //                    jObj.gety()
 //                    String userName = jObj.getString("user_name");
 //                    String userMail = jObj.getString("user_email");
@@ -102,28 +106,39 @@ public class LoginActivity extends AppCompatActivity {
 //                        session.setUsername(username);
 //                    }
 
-                    if (userId != null) {
-                        session.setLogin(true);
-                        session.createLoginSession(userId,email);
-                        //if you are admin
-                        if(userId.equals("9")){
-                            Intent intent = new Intent(LoginActivity.this,
-                                    MainActivity.class);
-                            startActivity(intent);
-                            finish();
-                        }else {
-                            Intent intent = new Intent(LoginActivity.this,
-                                    MainActivityForUsers.class);
-                            startActivity(intent);
-                            finish();
+                        if (userId != null) {
+                            session.setLogin(true);
+                            session.createLoginSession(userId, email);
+                            //if you are admin
+                            if (userId.equals("9")) {
+                                Intent intent = new Intent(LoginActivity.this,
+                                        MainActivity.class);
+                                startActivity(intent);
+                                finish();
+                            } else {
+                                Intent intent = new Intent(LoginActivity.this,
+                                        MainActivityForUsers.class);
+                                startActivity(intent);
+                                finish();
 
+                            }
+                        } else {
+                            String errorMsg = jObj.getString("error_msg");
+//                        Snackbar.make(view,"email or password incorrect",Snackbar.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(),
+                                    errorMsg, Toast.LENGTH_LONG).show();
                         }
-                    } else {
-                        String errorMsg = jObj.getString("error_msg");
-                        Toast.makeText(getApplicationContext(),
-                                errorMsg, Toast.LENGTH_LONG).show();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                } catch (JSONException e) {
+                }
+                //Failed to login
+                else {
+                        Snackbar.make(view,"email or password incorrect",Snackbar.LENGTH_LONG).show();
+                }
+
+                }
+                catch(Exception e){
                     e.printStackTrace();
                 }
 
