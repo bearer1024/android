@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
-import android.support.annotation.IdRes;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,7 +25,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 
-public class ShowNews extends AppCompatActivity implements View.OnClickListener{
+public class ShowNewsForAdmin extends AppCompatActivity implements View.OnClickListener{
 
     private String newsId;
     private EditText editTextNewsId;
@@ -40,7 +39,7 @@ public class ShowNews extends AppCompatActivity implements View.OnClickListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_news);
+        setContentView(R.layout.activity_show_news_for_admin);
 
         Intent intent = getIntent();
 
@@ -69,7 +68,7 @@ public class ShowNews extends AppCompatActivity implements View.OnClickListener{
             @Override
                     protected  void onPreExecute(){
                 super.onPreExecute();
-                loading = ProgressDialog.show(ShowNews.this,"Fetching...","wait...",false,false);
+                loading = ProgressDialog.show(ShowNewsForAdmin.this,"Fetching...","wait...",false,false);
             }
 
             @Override
@@ -115,7 +114,7 @@ public class ShowNews extends AppCompatActivity implements View.OnClickListener{
             @Override
             protected  void onPreExecute(){
                 super.onPreExecute();
-                progressDialog = ProgressDialog.show(ShowNews.this,"Downloading....",null,true,true);
+                progressDialog = ProgressDialog.show(ShowNewsForAdmin.this,"Downloading....",null,true,true);
             }
             @Override
             protected void onPostExecute(Bitmap image){
@@ -155,14 +154,14 @@ public class ShowNews extends AppCompatActivity implements View.OnClickListener{
             @Override
             protected void onPreExecute(){
                 super.onPreExecute();
-                loading = ProgressDialog.show(ShowNews.this,"Updating...","wait",false,false);
+                loading = ProgressDialog.show(ShowNewsForAdmin.this,"Updating...","wait",false,false);
             }
 
             @Override
             protected void onPostExecute(String s){
                 super.onPostExecute(s);
                 loading.dismiss();
-                Toast.makeText(ShowNews.this, s, Toast.LENGTH_LONG).show();
+                Toast.makeText(ShowNewsForAdmin.this, s, Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -189,14 +188,14 @@ public class ShowNews extends AppCompatActivity implements View.OnClickListener{
             @Override
             protected void onPreExecute(){
                 super.onPreExecute();
-                loading = ProgressDialog.show(ShowNews.this,"deleting....","wait",false,false);
+                loading = ProgressDialog.show(ShowNewsForAdmin.this,"deleting....","wait",false,false);
             }
 
             @Override
             protected void onPostExecute(String s){
                 super.onPostExecute(s);
                 loading.dismiss();
-                Toast.makeText(ShowNews.this, s, Toast.LENGTH_LONG).show();
+                Toast.makeText(ShowNewsForAdmin.this, s, Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -221,7 +220,7 @@ public class ShowNews extends AppCompatActivity implements View.OnClickListener{
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         deleteNews();
-                        startActivity(new Intent(ShowNews.this,ReadNewsActivity.class));
+                        startActivity(new Intent(ShowNewsForAdmin.this,ReadNewsActivity.class));
                     }
                 });
         alertDialogBuilder.setNegativeButton("No",

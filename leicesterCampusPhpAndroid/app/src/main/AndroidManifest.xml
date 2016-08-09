@@ -39,7 +39,9 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".CreateNewsActivity" />
         <activity android:name=".ReadNewsActivity" />
-        <activity android:name=".ShowNews"></activity>
+        <activity android:name=".ShowNewsForAdmin" />
+        <activity android:name=".MainActivityForUsers" />
+        <activity android:name=".ShowNewsForUser"></activity>
     </application>
 
 </manifest>

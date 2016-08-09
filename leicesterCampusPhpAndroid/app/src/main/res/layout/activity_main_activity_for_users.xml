@@ -16,15 +16,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Welcome, Administrator"
+            android:text="You are LoggedIn"
             android:textSize="30dp"
             android:textStyle="bold" />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/createNewsButton"
-            android:text="create News"/>
 
         <Button
             android:layout_width="match_parent"

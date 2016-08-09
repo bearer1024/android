@@ -11,12 +11,6 @@ import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.Toast;
-
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,7 +18,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 public class ReadNewsActivity extends AppCompatActivity
         implements ListView.OnItemClickListener{
@@ -32,6 +25,7 @@ public class ReadNewsActivity extends AppCompatActivity
     private ListView listView;
     private Button buttonBackToMenu;
     private String JSON_STRING;
+    private Session session;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,14 +33,25 @@ public class ReadNewsActivity extends AppCompatActivity
         listView = (ListView)findViewById(R.id.readListView);
         buttonBackToMenu = (Button)findViewById(R.id.buttonBackTOMenu);
         listView.setOnItemClickListener(this);
+        session = new Session(getApplicationContext());
         getJson();
 
         buttonBackToMenu.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent intent = new Intent(ReadNewsActivity.this,MainActivity.class);
-                startActivity(intent);
-                finish();
+                HashMap<String,String> user = session.getUserDetails();
+                String userId = user.get(Session.KEY_ID);
+                //to judge the status of user
+                //if it's admin
+                if (userId.equals("9")){
+                    Intent intent = new Intent(ReadNewsActivity.this,MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }else{
+                    Intent intent = new Intent(ReadNewsActivity.this,MainActivityForUsers.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
     }
@@ -113,10 +118,20 @@ public class ReadNewsActivity extends AppCompatActivity
 
     @Override
     public void onItemClick(AdapterView<?> parent,View view,int position,long id){
-        Intent intent = new Intent(this,ShowNews.class);
-        HashMap<String,String> map = (HashMap)parent.getItemAtPosition(position);
-        String newsId = map.get(ConfigPhpAndroid.TAG_NEWS_ID).toString();
-        intent.putExtra(ConfigPhpAndroid.NEWS_ID_INTENT,newsId);
-        startActivity(intent);
+        HashMap<String,String> user = session.getUserDetails();
+        String userId = user.get(Session.KEY_ID);
+        if (userId.equals("9")){
+            Intent intent = new Intent(this,ShowNewsForAdmin.class);
+            HashMap<String,String> map = (HashMap)parent.getItemAtPosition(position);
+            String newsId = map.get(ConfigPhpAndroid.TAG_NEWS_ID).toString();
+            intent.putExtra(ConfigPhpAndroid.NEWS_ID_INTENT,newsId);
+            startActivity(intent);
+        }else{
+            Intent intent = new Intent(this,ShowNewsForUser.class);
+            HashMap<String,String> map = (HashMap)parent.getItemAtPosition(position);
+            String newsId = map.get(ConfigPhpAndroid.TAG_NEWS_ID).toString();
+            intent.putExtra(ConfigPhpAndroid.NEWS_ID_INTENT,newsId);
+            startActivity(intent);
+        }
     }
 }

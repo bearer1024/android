@@ -92,6 +92,10 @@ public class LoginActivity extends AppCompatActivity {
                 try {
                     JSONObject jObj = new JSONObject(response);
                     String userId = jObj.getString("user_id");
+//                    jObj.gety()
+//                    String userName = jObj.getString("user_name");
+//                    String userMail = jObj.getString("user_email");
+//                    session.createLoginSession();
 //                    String username = jObj.getString("username");
 
 //                    if(username != null) {
@@ -100,10 +104,20 @@ public class LoginActivity extends AppCompatActivity {
 
                     if (userId != null) {
                         session.setLogin(true);
-                        Intent intent = new Intent(LoginActivity.this,
-                                MainActivity.class);
-                        startActivity(intent);
-                        finish();
+                        session.createLoginSession(userId,email);
+                        //if you are admin
+                        if(userId.equals("9")){
+                            Intent intent = new Intent(LoginActivity.this,
+                                    MainActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }else {
+                            Intent intent = new Intent(LoginActivity.this,
+                                    MainActivityForUsers.class);
+                            startActivity(intent);
+                            finish();
+
+                        }
                     } else {
                         String errorMsg = jObj.getString("error_msg");
                         Toast.makeText(getApplicationContext(),
