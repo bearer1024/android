@@ -26,8 +26,8 @@ public class Session {
     public void createLoginSession(String userId,String email){
 
 //        spEditor.putString(KEY_NAME,username);
-        spEditor.putString(KEY_MAIL,email);
         spEditor.putString(KEY_ID,userId);
+        spEditor.putString(KEY_MAIL,email);
         spEditor.commit();
     }
 
