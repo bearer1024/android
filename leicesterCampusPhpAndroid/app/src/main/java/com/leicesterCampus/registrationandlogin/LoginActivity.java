@@ -34,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private ProgressDialog progressDialog;
     private Session session;
+    private Button mapButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +73,16 @@ public class LoginActivity extends AppCompatActivity {
                     Snackbar.make(v, "Please enter the credentials!", Snackbar.LENGTH_LONG)
                             .show();
                 }
+            }
+        });
+
+        mapButton = (Button)findViewById(R.id.buttonForMap);
+        mapButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }

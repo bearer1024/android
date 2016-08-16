@@ -20,4 +20,5 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_create_news">CreateNewsActivity</string>
     <string name="uploadButton">upload</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
