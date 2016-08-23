@@ -28,6 +28,8 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.URI;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -77,7 +79,9 @@ public class CreateNewsActivity extends AppCompatActivity implements View.OnClic
 //                       createNewsFromAndroid(newsContent,newsLink,newsTitle);
 //                    }
 //                    createNewsFromAndroid(newsContent,newsTitle);
-                    creadNewsFromAndroidWithImage(newsContent,newsTitle,bitmap);
+                    Date pubDate = getCurrentTime();
+                    String pubDateToString = pubDate.toString();
+                    creadNewsFromAndroidWithImage(newsContent,newsTitle,bitmap,pubDateToString);
                 }else{
                     Snackbar.make(v,"title and content could not be null",
                             Snackbar.LENGTH_LONG).show();
@@ -100,7 +104,8 @@ public class CreateNewsActivity extends AppCompatActivity implements View.OnClic
 //                                       final String newsTitle) {
     private void creadNewsFromAndroidWithImage(final String newsContent,
                                                final String newsTitle,
-                                               final Bitmap bitmap){
+                                               final Bitmap bitmap,
+                                               final String pubdate ){
         String tag_string_req = "req_createNews";
         session = new Session(CreateNewsActivity.this);
 //        final String username = session.getUsername();
@@ -109,7 +114,7 @@ public class CreateNewsActivity extends AppCompatActivity implements View.OnClic
         showDialog();
 
         StringRequest strReq = new StringRequest(Request.Method.POST,
-                AppURLs.URL, new Response.Listener<String>() {
+                ConfigPhpAndroid.INDEX_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 hideDialog();
@@ -151,6 +156,7 @@ public class CreateNewsActivity extends AppCompatActivity implements View.OnClic
 //                params.put("newsLink",newsLink);
                 params.put("newsTitle",newsTitle);
                 params.put("image",uploadImage);
+                params.put("pubDate",pubdate);
 //                params.put("userName",username);
                 return params;
             }
@@ -170,7 +176,7 @@ public class CreateNewsActivity extends AppCompatActivity implements View.OnClic
         showDialog();
 
         StringRequest strReq = new StringRequest(Request.Method.POST,
-                AppURLs.URL, new Response.Listener<String>() {
+               ConfigPhpAndroid.INDEX_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 hideDialog();
@@ -289,7 +295,7 @@ public class CreateNewsActivity extends AppCompatActivity implements View.OnClic
                 HashMap<String,String> data = new HashMap<>();
                 data.put(UPLOAD_KEY, uploadImage);
 
-                String result = rh.sendPostRequest(AppURLs.URL,data);
+                String result = rh.sendPostRequest(ConfigPhpAndroid.INDEX_URL,data);
 
                 return result;
             }
@@ -306,5 +312,10 @@ public class CreateNewsActivity extends AppCompatActivity implements View.OnClic
     private void hideDialog(){
         if(pDialog.isShowing())
             pDialog.dismiss();
+    }
+
+    private Date getCurrentTime(){
+        Date date = Calendar.getInstance().getTime();
+        return date;
     }
 }

@@ -28,7 +28,7 @@ import java.util.HashMap;
 public class ShowNewsForAdmin extends AppCompatActivity implements View.OnClickListener{
 
     private String newsId;
-    private EditText editTextNewsId;
+    private EditText editTextNewsPubDate;
     private EditText editTextNewsTitle;
     private EditText editTextNewsContent;
     private Button buttonUpdate;
@@ -45,7 +45,7 @@ public class ShowNewsForAdmin extends AppCompatActivity implements View.OnClickL
 
         newsId = intent.getStringExtra(ConfigPhpAndroid.NEWS_ID_INTENT);
 
-        editTextNewsId = (EditText)findViewById(R.id.editTextNewsId);
+        editTextNewsPubDate= (EditText)findViewById(R.id.editTextNewsPubDate);
         editTextNewsTitle = (EditText)findViewById(R.id.editTextNewsTitle);
         editTextNewsContent = (EditText)findViewById(R.id.editTextNewsContent);
         imageView = (ImageView)findViewById(R.id.showImage);
@@ -55,8 +55,6 @@ public class ShowNewsForAdmin extends AppCompatActivity implements View.OnClickL
 
         buttonDelete.setOnClickListener(this);
         buttonUpdate.setOnClickListener(this);
-
-        editTextNewsId.setText(newsId);
 
         getNews();
 
@@ -96,10 +94,11 @@ public class ShowNewsForAdmin extends AppCompatActivity implements View.OnClickL
             JSONObject jobj = result.getJSONObject(0);
             String title = jobj.getString(ConfigPhpAndroid.TAG_NEWS_TITLE);
             String content = jobj.getString(ConfigPhpAndroid.TAG_NEWS_CONTENT);
+            String pubDate = jobj.getString(ConfigPhpAndroid.TAG_NEWS_PUBDATE);
             String stringImage = jobj.getString(ConfigPhpAndroid.TAG_NEWS_IMAGE);
             getImage();
 //            Bitmap bitmap = BitmapFactory.
-
+            editTextNewsPubDate.setText(pubDate);
             editTextNewsTitle.setText(title);
             editTextNewsContent.setText(content);
         }catch(JSONException e){

@@ -23,7 +23,7 @@ import java.net.URL;
 public class ShowNewsForUser extends AppCompatActivity {
 
     private String newsId;
-    private EditText editTextNewsId;
+    private EditText editTextNewsPubDate;
     private EditText editTextNewsTitle;
     private EditText editTextNewsContent;
     private ImageView imageView;
@@ -38,11 +38,10 @@ public class ShowNewsForUser extends AppCompatActivity {
 
         newsId = intent.getStringExtra(ConfigPhpAndroid.NEWS_ID_INTENT);
 
-        editTextNewsId = (EditText)findViewById(R.id.editTextNewsId);
+        editTextNewsPubDate= (EditText)findViewById(R.id.editTextNewsPubDate);
         editTextNewsTitle = (EditText)findViewById(R.id.editTextNewsTitle);
         editTextNewsContent = (EditText)findViewById(R.id.editTextNewsContent);
         imageView = (ImageView)findViewById(R.id.showImage);
-        editTextNewsId.setText(newsId);
 
         getNews();
     }
@@ -81,10 +80,11 @@ public class ShowNewsForUser extends AppCompatActivity {
             JSONObject jobj = result.getJSONObject(0);
             String title = jobj.getString(ConfigPhpAndroid.TAG_NEWS_TITLE);
             String content = jobj.getString(ConfigPhpAndroid.TAG_NEWS_CONTENT);
+            String pubDate = jobj.getString(ConfigPhpAndroid.TAG_NEWS_PUBDATE);
             String stringImage = jobj.getString(ConfigPhpAndroid.TAG_NEWS_IMAGE);
             getImage();
 //            Bitmap bitmap = BitmapFactory.
-
+            editTextNewsPubDate.setText(pubDate);
             editTextNewsTitle.setText(title);
             editTextNewsContent.setText(content);
         }catch(JSONException e){

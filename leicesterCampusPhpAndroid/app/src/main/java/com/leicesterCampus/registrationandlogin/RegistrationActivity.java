@@ -90,7 +90,7 @@ public class RegistrationActivity extends AppCompatActivity {
         showDialog();
 
         StringRequest strReq = new StringRequest(Request.Method.POST,
-                AppURLs.URL, new Response.Listener<String>() {
+                ConfigPhpAndroid.INDEX_URL, new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
