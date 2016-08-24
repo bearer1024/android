@@ -76,15 +76,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        mapButton = (Button)findViewById(R.id.buttonForMap);
-        mapButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+
     }
 
     private void checkLogin(final String email, final String password, final View view) {

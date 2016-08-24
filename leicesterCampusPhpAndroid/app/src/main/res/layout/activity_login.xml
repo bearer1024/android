@@ -107,11 +107,11 @@
                 android:textColor="#ffffff"
                 android:textSize="18sp" />
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="use map"
-                android:id="@+id/buttonForMap"/>
+            <!--<Button-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="use map"-->
+                <!--android:id="@+id/buttonForMap"/>-->
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

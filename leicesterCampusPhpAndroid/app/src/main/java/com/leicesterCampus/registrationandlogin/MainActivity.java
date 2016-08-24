@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnLogout,btnCreateNews,btnReadNews;
+    private Button btnLogout,btnCreateNews,btnReadNews,mapButton;
 
     private Session session;
 
@@ -57,6 +57,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 logoutUser();
+            }
+        });
+
+        mapButton = (Button)findViewById(R.id.buttonForMap);
+        mapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }

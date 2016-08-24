@@ -19,6 +19,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -38,6 +39,7 @@ public class MapsActivity extends AppCompatActivity implements
     private static final LatLng uniBennetBuilding = new LatLng(52.62314004599841,-1.1229104921221733);
     private static final LatLng uniStudentUnion = new LatLng(52.62172914614219,-1.1251498013734818);
     private static final LatLng uniKenEdwards = new LatLng(52.6212795292897,-1.125790849328041);
+    private static final LatLng draggableMarkerPosition = new LatLng(52.619768628140854,-1.1231867596507075);
     private TextView topTextView;
     private Marker mUniOfLeicester;
 
@@ -136,17 +138,25 @@ public class MapsActivity extends AppCompatActivity implements
         mUniOfLeicester = mMap.addMarker(new MarkerOptions().position(uniOfLeicester)
                 .title("This is the university of leicester")
                 .snippet("Campus-based academic institution,\n " +
-                        "founded in 1921,\n with 3 high-rise buildings and 23,000 students.")
-                .draggable(true));
+                        "founded in 1921,\n with 3 high-rise buildings and 23,000 students."));
         mMap.addMarker(new MarkerOptions().position(uniLibrary).title("David Wilson Library")
                 .snippet("Simple and modern self-service cafe\n " +
                         "offering straightforward snacks and light meals"));
         mMap.addMarker(new MarkerOptions().position(uniBennetBuilding).title("Bennet Building")
-                .snippet(""));
+                .snippet("This building usually used as \n" +
+                        "classrooms for teachers to teach \n " +
+                        "and students come to class"));
         mMap.addMarker(new MarkerOptions().position(uniStudentUnion).title("Students' Union")
-                .snippet(""));
+                .snippet("This building used for students\n" +
+                        " to host some celebration activities"));
         mMap.addMarker(new MarkerOptions().position(uniKenEdwards).title("Ken Edwards Building")
-                .snippet(""));
+                .snippet("There have some teachers from\n" +
+                        " other campus to give a lecture"));
+        mMap.addMarker(new MarkerOptions()
+                .position(draggableMarkerPosition)
+                .title("Destination")
+                .draggable(true)
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.arrow)));
 
         mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
 

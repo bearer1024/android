@@ -25,6 +25,13 @@
             android:layout_height="wrap_content"
             android:id="@+id/readNewsButton"
             android:text="read News"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="use map"
+            android:id="@+id/buttonForMap"/>
+
         <Button
             android:id="@+id/btnLogout"
             android:layout_width="match_parent"
