@@ -99,7 +99,7 @@ public class ReadNewsActivity extends AppCompatActivity
 
 
                 HashMap<String,String> news = new HashMap<>();
-//                news.put(ConfigPhpAndroid.TAG_NEWS_ID,newsId);
+                news.put(ConfigPhpAndroid.TAG_NEWS_ID,newsId);
                 news.put(ConfigPhpAndroid.TAG_NEWS_CONTENT,title);
                 list.add(news);
             }
