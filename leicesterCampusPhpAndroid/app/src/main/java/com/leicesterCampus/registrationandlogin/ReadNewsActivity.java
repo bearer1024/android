@@ -99,8 +99,8 @@ public class ReadNewsActivity extends AppCompatActivity
 
 
                 HashMap<String,String> news = new HashMap<>();
-//                news.put(ConfigPhpAndroid.TAG_NEWS_ID,newsId);
-                news.put(ConfigPhpAndroid.TAG_NEWS_CONTENT,title);
+                news.put(ConfigPhpAndroid.TAG_NEWS_ID,newsId);
+                news.put(ConfigPhpAndroid.TAG_NEWS_TITLE,title);
                 list.add(news);
             }
         }catch (JSONException e){
@@ -108,11 +108,15 @@ public class ReadNewsActivity extends AppCompatActivity
         }
 
         ListAdapter adapter = new SimpleAdapter(
+//                ReadNewsActivity.this,list,R.layout.activity_read_news_list_item,
+//                new String[]{ConfigPhpAndroid.TAG_NEWS_ID,ConfigPhpAndroid.TAG_NEWS_CONTENT},
+//                new int[]{R.id.listNewsTitle,R.id.listNewsContent}
                 ReadNewsActivity.this,list,R.layout.activity_read_news_list_item,
-                new String[]{ConfigPhpAndroid.TAG_NEWS_ID,ConfigPhpAndroid.TAG_NEWS_CONTENT},
-                new int[]{R.id.listNewsTitle,R.id.listNewsContent}
+                new String[]{ConfigPhpAndroid.TAG_NEWS_TITLE},
+                new int[]{R.id.listNewsContent}
         );
 
+        listView.setDividerHeight(50);
         listView.setAdapter(adapter);
     }
 

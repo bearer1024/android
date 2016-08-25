@@ -1,8 +1,5 @@
 package com.leicesterCampus.registrationandlogin;
 
-/**
- * Created by bearer1024 on 7/31/16.
- */
 public class ConfigPhpAndroid {
     public static String SERVER_IP = "http://192.168.0.11";
     public static String INDEX_URL = SERVER_IP+"/leicesterCampus/index.php";
