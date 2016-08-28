@@ -113,10 +113,10 @@ public class ReadNewsActivity extends AppCompatActivity
 //                new int[]{R.id.listNewsTitle,R.id.listNewsContent}
                 ReadNewsActivity.this,list,R.layout.activity_read_news_list_item,
                 new String[]{ConfigPhpAndroid.TAG_NEWS_TITLE},
-                new int[]{R.id.listNewsContent}
+                new int[]{R.id.listNewsTitle}
         );
 
-        listView.setDividerHeight(50);
+        listView.setDividerHeight(10);
         listView.setAdapter(adapter);
     }
 

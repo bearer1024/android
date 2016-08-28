@@ -7,6 +7,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/wallet_holo_blue_light"
+        android:textSize="30dp"
         android:id="@+id/listNewsTitle"/>
 
     <TextView
