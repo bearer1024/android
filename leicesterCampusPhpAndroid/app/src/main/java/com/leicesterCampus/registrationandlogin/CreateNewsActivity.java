@@ -59,6 +59,7 @@ public class CreateNewsActivity extends AppCompatActivity implements View.OnClic
         buttonImageUpload= (Button)findViewById(R.id.uploadButton);
         buttonViewImage = (Button)findViewById(R.id.buttonViewImage);
         imageView = (ImageView)findViewById(R.id.imageView);
+//        link = (EditText)findViewById(R.id.relativeLink);
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
 
@@ -118,8 +119,8 @@ public class CreateNewsActivity extends AppCompatActivity implements View.OnClic
             @Override
             public void onResponse(String response) {
                 hideDialog();
-
                 try {
+                    link.setText(response.toString());
                     JSONObject jObj = new JSONObject(response);
                     boolean error = jObj.getBoolean("error");
                     if(!error){
@@ -143,7 +144,7 @@ public class CreateNewsActivity extends AppCompatActivity implements View.OnClic
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getApplicationContext(),
                         error.getMessage(), Toast.LENGTH_LONG).show();
-                hideDialog();
+//                hideDialog();
             }
         }){
 

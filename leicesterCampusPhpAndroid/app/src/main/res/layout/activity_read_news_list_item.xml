@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="left"
+        android:paddingLeft="0dp"
+        android:id="@+id/readNewsImageView"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/readNewsImageView"
+        android:layout_toRightOf="@+id/readNewsImageView"
         android:textColor="@color/wallet_holo_blue_light"
         android:textSize="30dp"
         android:id="@+id/listNewsTitle"/>
@@ -13,10 +22,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/listNewsTitle"
+        android:layout_marginTop="2dip"
+        android:layout_toRightOf="@+id/readNewsImageView"
+        android:textSize="10dp"
+        android:textStyle="italic"
         android:id="@+id/listNewsContent"/>
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/readNewsImageView"/>
-</LinearLayout>
+</RelativeLayout>

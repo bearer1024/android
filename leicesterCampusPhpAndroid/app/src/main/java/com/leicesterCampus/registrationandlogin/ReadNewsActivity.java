@@ -2,20 +2,30 @@ package com.leicesterCampus.registrationandlogin;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -26,12 +36,15 @@ public class ReadNewsActivity extends AppCompatActivity
     private Button buttonBackToMenu;
     private String JSON_STRING;
     private Session session;
+    private Bitmap image;
+    private ImageView newsImageView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read_news);
         listView = (ListView)findViewById(R.id.readListView);
         buttonBackToMenu = (Button)findViewById(R.id.buttonBackTOMenu);
+        newsImageView = (ImageView)findViewById(R.id.readNewsImageView);
         listView.setOnItemClickListener(this);
         session = new Session(getApplicationContext());
         getJson();
@@ -98,9 +111,11 @@ public class ReadNewsActivity extends AppCompatActivity
                 String newsId = jsonObject.getString(ConfigPhpAndroid.TAG_NEWS_ID);
 
 
+
                 HashMap<String,String> news = new HashMap<>();
                 news.put(ConfigPhpAndroid.TAG_NEWS_ID,newsId);
                 news.put(ConfigPhpAndroid.TAG_NEWS_TITLE,title);
+//                setImageById(newsId);
                 list.add(news);
             }
         }catch (JSONException e){
@@ -112,12 +127,31 @@ public class ReadNewsActivity extends AppCompatActivity
 //                new String[]{ConfigPhpAndroid.TAG_NEWS_ID,ConfigPhpAndroid.TAG_NEWS_CONTENT},
 //                new int[]{R.id.listNewsTitle,R.id.listNewsContent}
                 ReadNewsActivity.this,list,R.layout.activity_read_news_list_item,
-                new String[]{ConfigPhpAndroid.TAG_NEWS_TITLE},
+                new String[]{ConfigPhpAndroid.TAG_NEWS_TITLE,ConfigPhpAndroid.TAG_NEWS_ID},
                 new int[]{R.id.listNewsTitle}
         );
 
+
         listView.setDividerHeight(10);
         listView.setAdapter(adapter);
+    }
+
+    public void setImageById(String id){
+             String addUrl = ConfigPhpAndroid.URL_GET_IMAGE+id;
+                URL url = null;
+                try {
+                    url = new URL(addUrl);
+                    InputStream inputStream = url.openConnection().getInputStream();
+                    image = BitmapFactory.decodeStream(inputStream);
+                    newsImageView.setImageBitmap(image);
+                }catch (MalformedURLException e){
+                    e.printStackTrace();
+                }catch( IOException e){
+                    e.printStackTrace();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+
     }
 
     @Override

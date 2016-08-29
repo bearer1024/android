@@ -14,9 +14,6 @@ import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
 
-/**
- * Created by bearer1024 on 7/31/16.
- */
 public class RequestHandler {
     //Method to send httpPostRequest
     //This method is taking two arguments
