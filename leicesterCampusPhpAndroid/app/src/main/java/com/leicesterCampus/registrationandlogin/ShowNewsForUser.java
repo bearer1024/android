@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -17,15 +18,16 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
 public class ShowNewsForUser extends AppCompatActivity {
 
     private String newsId;
-    private EditText editTextNewsPubDate;
-    private EditText editTextNewsTitle;
-    private EditText editTextNewsContent;
+    private TextView editTextNewsPubDate;
+    private TextView editTextNewsTitle;
+    private TextView editTextNewsContent;
     private ImageView imageView;
     Bitmap image = null;
 
@@ -38,9 +40,9 @@ public class ShowNewsForUser extends AppCompatActivity {
 
         newsId = intent.getStringExtra(ConfigPhpAndroid.NEWS_ID_INTENT);
 
-        editTextNewsPubDate= (EditText)findViewById(R.id.editTextNewsPubDate);
-        editTextNewsTitle = (EditText)findViewById(R.id.editTextNewsTitle);
-        editTextNewsContent = (EditText)findViewById(R.id.editTextNewsContent);
+        editTextNewsPubDate= (TextView) findViewById(R.id.editTextNewsPubDate);
+        editTextNewsTitle = (TextView) findViewById(R.id.editTextNewsTitle);
+        editTextNewsContent = (TextView) findViewById(R.id.editTextNewsContent);
         imageView = (ImageView)findViewById(R.id.showImage);
 
         getNews();
@@ -110,11 +112,15 @@ public class ShowNewsForUser extends AppCompatActivity {
             @Override
             protected  Bitmap doInBackground(String... params){
                 String newsId = params[0];
-                String addUrl = ConfigPhpAndroid.URL_GET_IMAGE+newsId;
-                URL url = null;
+                String addUrl = ConfigPhpAndroid.URL_GET_IMAGE_URL+newsId+".jpg";
                 try {
-                    url = new URL(addUrl);
-                    InputStream inputStream = url.openConnection().getInputStream();
+                    URL url = new URL(addUrl);
+                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                    connection.setDoInput(true);
+                    connection.connect();
+                    InputStream inputStream = connection.getInputStream();
+
+//                    InputStream inputStream = url.openConnection().getInputStream();
                     image = BitmapFactory.decodeStream(inputStream);
                 }catch (MalformedURLException e){
                     e.printStackTrace();

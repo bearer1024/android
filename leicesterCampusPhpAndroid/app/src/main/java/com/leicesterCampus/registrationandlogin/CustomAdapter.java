@@ -1,5 +1,6 @@
 package com.leicesterCampus.registrationandlogin;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,80 +11,69 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.NetworkImageView;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 public class CustomAdapter extends BaseAdapter{
     Context context;
+    private Activity activity;
+    private LayoutInflater inflater;
     private Bitmap image;
     String  newsId;
+    private List<News> newsList;
+    ImageLoader imageLoader = AppController.getInstance().getImageLoader();
 
-    public CustomAdapter(ReadNewsActivity readNewsActivity, ArrayList arrayList, String newsId){
-        this.newsId = newsId;
+    public CustomAdapter(Activity activity,List<News> newsList){
+
+        this.activity = activity;
+        this.newsList = newsList;
     }
+
     @Override
     public int getCount() {
-        return 0;
+        return newsList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return newsList.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View view = convertView;
-        NewsHolder newsHolder= new NewsHolder();
-        if(convertView==null){
-            LayoutInflater layoutInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = layoutInflater.inflate(R.layout.activity_read_news_list_item,null);
-            TextView newsTitleTextView = (TextView)view.findViewById(R.id.listNewsTitle);
-            TextView newsContentTextView = (TextView)view.findViewById(R.id.listNewsContent);
-            ImageView newsImage = (ImageView)view.findViewById(R.id.readNewsImageView);
-            newsHolder.imageView = newsImage;
-            newsHolder.newsContent = newsContentTextView;
-            newsHolder.newsTitle = newsTitleTextView;
-            view.setTag(newsHolder);
-        }else{
-            newsHolder = (NewsHolder)view.getTag();
-            TextView newsTitleTextView = (TextView)view.findViewById(R.id.listNewsTitle);
-            TextView newsContentTextView = (TextView)view.findViewById(R.id.listNewsContent);
-            ImageView newsImage = (ImageView)view.findViewById(R.id.readNewsImageView);
-            newsHolder.imageView.setImageBitmap(getImageById(newsId));
-            newsHolder.newsContent = newsContentTextView;
-            newsHolder.newsTitle = newsTitleTextView;
-        }
-        return null;
-    }
-    public Bitmap getImageById(String newsId){
-        String addUrl = ConfigPhpAndroid.URL_GET_IMAGE+newsId;
-    URL url = null;
-    try {
-        url = new URL(addUrl);
-        InputStream inputStream = url.openConnection().getInputStream();
-        image = BitmapFactory.decodeStream(inputStream);
-    }catch (MalformedURLException e){
-        e.printStackTrace();
-    }catch( IOException e){
-        e.printStackTrace();
-    }catch(Exception e){
-        e.printStackTrace();
-    }
-        return image;
+        if (inflater == null)
+            inflater = (LayoutInflater) activity
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        if (convertView == null)
+            convertView = inflater.inflate(R.layout.activity_read_news_list_item, null);
+
+        if (imageLoader == null)
+            imageLoader = AppController.getInstance().getImageLoader();
+        NetworkImageView thumbNail = (NetworkImageView) convertView.findViewById(R.id.readNewsImageView);
+            TextView newsTitleTextView = (TextView)convertView.findViewById(R.id.listNewsTitle);
+            TextView newsContentTextView = (TextView)convertView.findViewById(R.id.listNewsContent);
+        //get news data from row
+        News news = newsList.get(position);
+
+        //thumbNailImage
+        thumbNail.setImageUrl(news.getThumbNailUrl(),imageLoader);
+
+        //title
+        newsTitleTextView.setText(news.getTitle());
+
+        return convertView;
     }
 
-    public class NewsHolder{
-        public TextView newsTitle;
-        public TextView newsContent;
-        public ImageView imageView;
-    }
 }

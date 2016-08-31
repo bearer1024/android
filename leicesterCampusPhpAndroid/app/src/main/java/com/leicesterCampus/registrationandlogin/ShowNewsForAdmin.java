@@ -21,6 +21,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
@@ -97,7 +98,6 @@ public class ShowNewsForAdmin extends AppCompatActivity implements View.OnClickL
             String pubDate = jobj.getString(ConfigPhpAndroid.TAG_NEWS_PUBDATE);
             String stringImage = jobj.getString(ConfigPhpAndroid.TAG_NEWS_IMAGE);
             getImage();
-//            Bitmap bitmap = BitmapFactory.
             editTextNewsPubDate.setText(pubDate);
             editTextNewsTitle.setText(title);
             editTextNewsContent.setText(content);
@@ -124,11 +124,16 @@ public class ShowNewsForAdmin extends AppCompatActivity implements View.OnClickL
             @Override
             protected  Bitmap doInBackground(String... params){
                 String newsId = params[0];
-                String addUrl = ConfigPhpAndroid.URL_GET_IMAGE+newsId;
-                URL url = null;
+//                String addUrl = ConfigPhpAndroid.URL_GET_IMAGE+newsId;
+                String addUrl = ConfigPhpAndroid.URL_GET_IMAGE_URL+newsId+".jpg";
                 try {
-                    url = new URL(addUrl);
-                    InputStream inputStream = url.openConnection().getInputStream();
+                    URL url = new URL(addUrl);
+                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                    connection.setDoInput(true);
+                    connection.connect();
+                    InputStream inputStream = connection.getInputStream();
+
+//                    InputStream inputStream = url.openConnection().getInputStream();
                     image = BitmapFactory.decodeStream(inputStream);
                 }catch (MalformedURLException e){
                     e.printStackTrace();
@@ -142,6 +147,21 @@ public class ShowNewsForAdmin extends AppCompatActivity implements View.OnClickL
         }
         GetImage getImage = new GetImage();
         getImage.execute(newsId);
+    }
+
+    public static Bitmap getBitmapFromURL(String src) {
+        try {
+            URL url = new URL(src);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setDoInput(true);
+            connection.connect();
+            InputStream input = connection.getInputStream();
+            Bitmap myBitmap = BitmapFactory.decodeStream(input);
+            return myBitmap;
+        } catch (IOException e) {
+            // Log exception
+            return null;
+        }
     }
 
     private void updateNews(){

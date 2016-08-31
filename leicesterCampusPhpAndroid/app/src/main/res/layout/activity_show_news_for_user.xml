@@ -11,34 +11,22 @@
     tools:context=".ShowNewsForUser">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="news publish date" />
-
-    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:enabled="false"
+        android:id="@+id/editTextNewsTitle"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="30dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textStyle="italic"
         android:id="@+id/editTextNewsPubDate" />
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="news title" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:enabled="false"
-        android:id="@+id/editTextNewsTitle" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="news content" />
-
-    <EditText
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/editTextNewsContent" />
 

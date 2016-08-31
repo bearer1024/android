@@ -35,7 +35,6 @@ import java.util.Map;
 
 public class CreateNewsActivity extends AppCompatActivity implements View.OnClickListener{
 
-    public static final String UPLOAD_KEY = "image";
     private EditText title,content,link;
     private Button buttonBackToMenu, buttonSubmit,buttonImageChoose,
             buttonImageUpload,buttonViewImage;
@@ -59,7 +58,7 @@ public class CreateNewsActivity extends AppCompatActivity implements View.OnClic
         buttonImageUpload= (Button)findViewById(R.id.uploadButton);
         buttonViewImage = (Button)findViewById(R.id.buttonViewImage);
         imageView = (ImageView)findViewById(R.id.imageView);
-//        link = (EditText)findViewById(R.id.relativeLink);
+        link = (EditText)findViewById(R.id.relativeLink);
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
 
@@ -101,8 +100,6 @@ public class CreateNewsActivity extends AppCompatActivity implements View.OnClic
         });
     }
 
-//    private void createNewsFromAndroid(final String newsContent,final String newsLink,
-//                                       final String newsTitle) {
     private void creadNewsFromAndroidWithImage(final String newsContent,
                                                final String newsTitle,
                                                final Bitmap bitmap,
@@ -268,43 +265,7 @@ public class CreateNewsActivity extends AppCompatActivity implements View.OnClic
         return encodedImage;
     }
 
-    /*private void uploadImage(){
-        class UploadImage extends AsyncTask<Bitmap,Void,String> {
 
-            ProgressDialog loading;
-            RequestHandler rh = new RequestHandler();
-
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-                loading = ProgressDialog.show(CreateNewsActivity.this,
-                        "Uploading Image", "Please wait...",true,true);
-            }
-
-            @Override
-            protected void onPostExecute(String s) {
-                super.onPostExecute(s);
-                loading.dismiss();
-                Toast.makeText(getApplicationContext(),s,Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            protected String doInBackground(Bitmap... params) {
-                Bitmap bitmap = params[0];
-                String uploadImage = getStringImage(bitmap);
-
-                HashMap<String,String> data = new HashMap<>();
-                data.put(UPLOAD_KEY, uploadImage);
-
-                String result = rh.sendPostRequest(ConfigPhpAndroid.INDEX_URL,data);
-
-                return result;
-            }
-        }
-
-        UploadImage ui = new UploadImage();
-        ui.execute(bitmap);
-    }*/
     private void showDialog(){
         if(!pDialog.isShowing())
             pDialog.show();
