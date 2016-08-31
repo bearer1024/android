@@ -55,8 +55,6 @@ public class CreateNewsActivity extends AppCompatActivity implements View.OnClic
         buttonBackToMenu = (Button)findViewById(R.id.backButton);
         buttonSubmit = (Button)findViewById(R.id.submitButton);
         buttonImageChoose = (Button)findViewById(R.id.chooseFile);
-        buttonImageUpload= (Button)findViewById(R.id.uploadButton);
-        buttonViewImage = (Button)findViewById(R.id.buttonViewImage);
         imageView = (ImageView)findViewById(R.id.imageView);
         link = (EditText)findViewById(R.id.relativeLink);
         pDialog = new ProgressDialog(this);

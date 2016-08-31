@@ -26,7 +26,8 @@ import java.util.Map;
 public class RegistrationActivity extends AppCompatActivity {
 
     private TextView tvLogin;
-    private EditText fullName, email_to_register, password_to_register;
+    private EditText fullName, email_to_register,
+            password_to_register,password_to_register_to_confirm;
     private Button registerButton;
     private Session session;
     private ProgressDialog pDialog;
@@ -52,6 +53,7 @@ public class RegistrationActivity extends AppCompatActivity {
         fullName = (EditText) findViewById(R.id.fullname_register);
         email_to_register = (EditText) findViewById(R.id.email_register);
         password_to_register = (EditText) findViewById(R.id.password_register);
+        password_to_register_to_confirm = (EditText)findViewById(R.id.password_register_confirm);
         tvLogin = (TextView) findViewById(R.id.tv_signin);
 
         registerButton.setOnClickListener(new View.OnClickListener() {
@@ -60,9 +62,19 @@ public class RegistrationActivity extends AppCompatActivity {
                 String name = fullName.getText().toString();
                 String email = email_to_register.getText().toString();
                 String password = password_to_register.getText().toString();
+                String passwordToConfirm = password_to_register_to_confirm.getText().toString();
 
                 if (!name.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
-                    registerUser(name, email, password);
+                    if(email.contains("@")){
+                        if(password.equals(passwordToConfirm)) {
+                            registerUser(name, email, password);
+                        }else{
+                            password_to_register_to_confirm.setError("Confirm password not match");
+                        }
+                    }else{
+                        email_to_register.setError("please input correct format email address");
+                    }
+
                 } else {
                     Snackbar.make(v, "Please enter the credentials!", Snackbar.LENGTH_LONG)
                             .show();
