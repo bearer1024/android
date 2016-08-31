@@ -36,8 +36,7 @@ import java.util.Map;
 public class CreateNewsActivity extends AppCompatActivity implements View.OnClickListener{
 
     private EditText title,content,link;
-    private Button buttonBackToMenu, buttonSubmit,buttonImageChoose,
-            buttonImageUpload,buttonViewImage;
+    private Button buttonBackToMenu, buttonSubmit,buttonImageChoose;
     private ProgressDialog pDialog;
     private int PICK_IMAGE_REQUEST = 1;
     private Bitmap bitmap;
@@ -56,13 +55,10 @@ public class CreateNewsActivity extends AppCompatActivity implements View.OnClic
         buttonSubmit = (Button)findViewById(R.id.submitButton);
         buttonImageChoose = (Button)findViewById(R.id.chooseFile);
         imageView = (ImageView)findViewById(R.id.imageView);
-        link = (EditText)findViewById(R.id.relativeLink);
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
 
-        buttonViewImage.setOnClickListener(this);
         buttonImageChoose.setOnClickListener(this);
-        buttonImageUpload.setOnClickListener(this);
         buttonSubmit.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -115,7 +111,7 @@ public class CreateNewsActivity extends AppCompatActivity implements View.OnClic
             public void onResponse(String response) {
                 hideDialog();
                 try {
-                    link.setText(response.toString());
+//                    link.setText(response.toString());
                     JSONObject jObj = new JSONObject(response);
                     boolean error = jObj.getBoolean("error");
                     if(!error){
@@ -227,9 +223,7 @@ public class CreateNewsActivity extends AppCompatActivity implements View.OnClic
         if(v == buttonImageChoose){
             showFileChooser();
         }
-        if(v == buttonImageUpload){
-//            uploadImage();
-        }
+
     }
 
     private void showFileChooser() {
