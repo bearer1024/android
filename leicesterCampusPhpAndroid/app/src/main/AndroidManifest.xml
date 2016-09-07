@@ -8,15 +8,9 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-
-    <!--
-         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
-         Google Maps Android API v2, but you must specify either coarse or fine
-         location permissions for the 'MyLocation' functionality. 
-    -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
 
     <application
         android:name=".AppController"
@@ -37,7 +31,9 @@
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:label="@string/title_activity_login" />
+            android:label="@string/action_sign_in" />
+
+
         <activity
             android:name=".RegistrationActivity"
             android:label="@string/title_activity_registration"
@@ -46,11 +42,21 @@
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme" />
-        <activity android:name=".CreateNewsActivity" />
-        <activity android:name=".ReadNewsActivity" />
-        <activity android:name=".ShowNewsForAdmin" />
-        <activity android:name=".MainActivityForUsers" />
-        <activity android:name=".ShowNewsForUser" />
+        <activity android:name=".CreateNewsActivity"
+            android:label="create news"
+            android:theme="@style/AppTheme"
+            />
+        <activity android:name=".ReadNewsActivity"
+            android:theme="@style/AppTheme"
+            android:label="News List"/>
+        <activity android:name=".ShowNewsForAdmin"
+            android:theme="@style/AppTheme"
+            android:label="News Detail"/>
+        <activity android:name=".MainActivityForUsers"
+            />
+        <activity android:name=".ShowNewsForUser"
+            android:theme="@style/AppTheme"
+            android:label="News Detail"/>
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -66,7 +72,7 @@
 
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
+            android:label="@string/title_activity_maps" />
     </application>
 
 </manifest>

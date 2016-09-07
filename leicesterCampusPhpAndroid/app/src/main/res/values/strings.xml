@@ -16,9 +16,9 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-    <string name="title_activity_registration">Register</string>
-    <string name="title_activity_main">MainActivity</string>
-    <string name="title_activity_create_news">CreateNewsActivity</string>
+    <string name="title_activity_registration">Registration</string>
+    <string name="title_activity_main">Leicester Campus </string>
+    <string name="title_activity_create_news">Create News Activity</string>
     <string name="uploadButton">upload</string>
     <string name="title_activity_maps">Map</string>
     <!--    Permissions    -->

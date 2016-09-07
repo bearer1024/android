@@ -43,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dip"
-            android:background="#2c3e50"
+            android:background="#DDA0DD"
             android:text="Logout"
             android:textColor="#ffffff"
             android:textSize="15dp" />

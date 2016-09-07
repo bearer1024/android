@@ -109,7 +109,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="40dp"
-                android:background="#2c3e50"
+                android:background="#DDA0DD"
                 android:text="Register"
                 android:textColor="#ffffff"
                 android:textSize="18sp" />
@@ -122,7 +122,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="30dp"
-                android:text="Already have an account! Sign In"
+                android:text="Already has an account! Sign In"
                 android:textColor="#2c3e50"
                 android:textStyle="bold" />
 

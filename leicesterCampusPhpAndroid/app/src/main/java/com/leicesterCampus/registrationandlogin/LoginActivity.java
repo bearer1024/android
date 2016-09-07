@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -28,29 +29,35 @@ import java.util.Map;
  * A login screen that offers login via email/password.
  */
 public class LoginActivity extends AppCompatActivity {
-
+    //
     private Button registrationButton, loginButton;
     private EditText email_to_login, password_to_login;
+    private TextView textViewForRegistation;
 
     private ProgressDialog progressDialog;
     private Session session;
-    private Button mapButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        // every control _ID; AndroidManifest.xml;
         Toolbar toolBar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolBar);
+
+        //session : be used to save user's status;
         session = new Session(LoginActivity.this);
         progressDialog = new ProgressDialog(this);
+        //
         progressDialog.setCancelable(false);
+        //define;
         registrationButton = (Button) findViewById(R.id.registration_button);
         loginButton = (Button) findViewById(R.id.signin_button);
         email_to_login = (EditText) findViewById(R.id.email_to_login);
         password_to_login = (EditText) findViewById(R.id.password_to_login);
+        textViewForRegistation = (TextView) findViewById(R.id.tv_register);
 
-
+        //monitor whether u click the button : setOnclick...  intent jump one activity to another
         registrationButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,33 +73,45 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String email = email_to_login.getText().toString();
                 String password = password_to_login.getText().toString();
-
+                // checkLogin function
                 if (email.trim().length() > 0 && password.trim().length() > 0) {
                     checkLogin(email, password,v);
                 } else {
-                    Snackbar.make(v, "Please enter the credentials!", Snackbar.LENGTH_LONG)
+                    Snackbar.make(v, "Please enter the E-mail and password!", Snackbar.LENGTH_LONG)
                             .show();
                 }
             }
         });
 
+        textViewForRegistation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this,
+                        RegistrationActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
 
     }
-
+    // view : error message
     private void checkLogin(final String email, final String password, final View view) {
         String tag_string_req = "req_login";
-
+        //if internet speed is slow ,it can give user hint.
         progressDialog.setMessage("Logging in ...");
         showDialog();
-
+        // start //post  send data to the server , verify by the database
         StringRequest strReq = new StringRequest(Request.Method.POST,
+                //Config....
                 ConfigPhpAndroid.INDEX_URL, new Response.Listener<String>() {
-
+            // first MAP ,
             @Override
             public void onResponse(String response) {
                 hideDialog();
 
                 try {
+                    // set value response in json
                     JSONObject jsonObject = new JSONObject(response);
                     Boolean FailToLogin= jsonObject.getBoolean("error");
                 if(!FailToLogin) {
@@ -132,7 +151,7 @@ public class LoginActivity extends AppCompatActivity {
                                     errorMsg, Toast.LENGTH_LONG).show();
                         }
                     } catch (JSONException e) {
-                        e.printStackTrace();
+                        e.printStackTrace();// catch bug
                     }
                 }
                 //Failed to login
@@ -152,8 +171,9 @@ public class LoginActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getApplicationContext(),
                         error.getMessage(), Toast.LENGTH_LONG).show();
-                hideDialog();
+                hideDialog();//  system crash problem
             }
+            // ending
         }) {
 
             @Override

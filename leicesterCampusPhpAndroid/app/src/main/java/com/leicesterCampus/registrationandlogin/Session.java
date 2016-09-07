@@ -45,7 +45,7 @@ public class Session {
         return true;
     }
 
-
+    // default it is false
     public boolean getLoggedIn() {
         return sp.getBoolean("is_logged_in", false);
     }

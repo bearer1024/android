@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -43,6 +44,9 @@ public class ReadNewsActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read_news);
+        Toolbar toolBar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolBar);
+//        getActionBar().setHomeButtonEnabled(true);
         listView = (ListView) findViewById(R.id.readListView);
         buttonBackToMenu = (Button) findViewById(R.id.buttonBackTOMenu);
         listView.setOnItemClickListener(this);
@@ -171,8 +175,8 @@ public class ReadNewsActivity extends AppCompatActivity
                 News news = new News();
                 news.setNewsId(jsonObject.getString(ConfigPhpAndroid.TAG_NEWS_ID));
                 news.setTitle(jsonObject.getString(ConfigPhpAndroid.TAG_NEWS_TITLE));
-                String newsUrl = ConfigPhpAndroid.URL_IMAGE_PREFIX+jsonObject.getString(ConfigPhpAndroid.TAG_NEWS_IMAGE);
-                news.setThumbNailUrl(ConfigPhpAndroid.URL_IMAGE_PREFIX+jsonObject.getString(ConfigPhpAndroid.TAG_NEWS_IMAGE));
+                String imageUrl = ConfigPhpAndroid.URL_IMAGE_PREFIX+jsonObject.getString(ConfigPhpAndroid.TAG_NEWS_IMAGE);
+                news.setThumbNailUrl(imageUrl);
                 newsList.add(news);
 
 //                HashMap<String,String> news = new HashMap<>();

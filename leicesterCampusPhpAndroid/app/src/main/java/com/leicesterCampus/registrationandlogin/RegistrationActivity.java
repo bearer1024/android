@@ -69,14 +69,15 @@ public class RegistrationActivity extends AppCompatActivity {
                         if(password.equals(passwordToConfirm)) {
                             registerUser(name, email, password);
                         }else{
-                            password_to_register_to_confirm.setError("Confirm password not match");
+                            password_to_register_to_confirm.setError("Confirm password is not match");
                         }
                     }else{
-                        email_to_register.setError("please input correct format email address");
+                        email_to_register.setError("Please input correct format of email address");
+
                     }
 
                 } else {
-                    Snackbar.make(v, "Please enter the credentials!", Snackbar.LENGTH_LONG)
+                    Snackbar.make(v, "Please input the necessary information!", Snackbar.LENGTH_LONG)
                             .show();
                 }
             }
@@ -92,7 +93,7 @@ public class RegistrationActivity extends AppCompatActivity {
             }
         });
     }
-
+     // final is used to guarantee name,email and password cannot be altered
     private void registerUser(final String name, final String email,
                               final String password) {
         // Tag used to cancel the request
@@ -152,6 +153,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
         };
 
+        // Add the request to the RequestQueue.
         AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
 

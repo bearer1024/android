@@ -72,40 +72,47 @@
                 </android.support.design.widget.TextInputLayout>
 
             </LinearLayout>
-
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
             <Button
                 android:id="@+id/signin_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="40dp"
-                android:background="#2c3e50"
-                android:text="Sign In"
-                android:textColor="#ffffff"
-                android:textSize="18sp" />
-
-            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp"
-                android:text="Don't have account yet?"
-                android:textColor="#2c3e50"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:layout_weight="1"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:background="#DDA0DD"
+                android:text="Login"
+                android:textColor="#ffffff"
+                android:textSize="18sp" />
 
             <Button
                 android:id="@+id/registration_button"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginTop="20dp"
-                android:background="#2c3e50"
-                android:text="Register Here"
+                android:layout_marginTop="10dp"
+                android:background="#DDA0DD"
+                android:text="Register"
                 android:textColor="#ffffff"
                 android:textSize="18sp" />
+                </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="30dp"
+                android:text="Not have an account yet? go to register"
+                android:textColor="#2c3e50"
+                android:textStyle="bold" />
 
             <!--<Button-->
                 <!--android:layout_width="match_parent"-->

@@ -64,7 +64,8 @@ public class MainActivity extends AppCompatActivity {
         mapButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
+//                Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
+                Intent intent = new Intent(MainActivity.this,MapsActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -73,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void logoutUser() {
+        // session
         session.setLogin(false);
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(intent);

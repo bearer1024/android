@@ -3,13 +3,12 @@ package com.leicesterCampus.registrationandlogin;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.media.Image;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.provider.MediaStore;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
@@ -27,7 +26,6 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.net.URI;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -48,6 +46,8 @@ public class CreateNewsActivity extends AppCompatActivity implements View.OnClic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_news);
+        Toolbar toolBar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolBar);
         title = (EditText)findViewById(R.id.title);
         content = (EditText)findViewById(R.id.newsContent);
 //        link = (EditText)findViewById(R.id.relativeLink);
@@ -75,7 +75,7 @@ public class CreateNewsActivity extends AppCompatActivity implements View.OnClic
 //                    createNewsFromAndroid(newsContent,newsTitle);
                     Date pubDate = getCurrentTime();
                     String pubDateToString = pubDate.toString();
-                    creadNewsFromAndroidWithImage(newsContent,newsTitle,bitmap,pubDateToString);
+                    createNewsFromAndroidWithImage(newsContent,newsTitle,bitmap,pubDateToString);
                 }else{
                     Snackbar.make(v,"title and content could not be null",
                             Snackbar.LENGTH_LONG).show();
@@ -94,10 +94,10 @@ public class CreateNewsActivity extends AppCompatActivity implements View.OnClic
         });
     }
 
-    private void creadNewsFromAndroidWithImage(final String newsContent,
-                                               final String newsTitle,
-                                               final Bitmap bitmap,
-                                               final String pubdate ){
+    private void createNewsFromAndroidWithImage(final String newsContent,
+                                                final String newsTitle,
+                                                final Bitmap bitmap,
+                                                final String pubdate ){
         String tag_string_req = "req_createNews";
         session = new Session(CreateNewsActivity.this);
 //        final String username = session.getUsername();
