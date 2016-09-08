@@ -3,9 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.leicesterCampus.registrationandlogin.MainActivity">
     <item android:id="@+id/action_home"
-        android:orderInCategory="101"
+        android:orderInCategory="99"
         android:title="Home"
-        app:showAsAction="always"/>
+        android:icon="@drawable/ic_home_white_24dp"
+        app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"

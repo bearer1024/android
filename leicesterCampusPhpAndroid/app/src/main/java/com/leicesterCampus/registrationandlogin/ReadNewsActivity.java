@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -46,7 +47,7 @@ public class ReadNewsActivity extends AppCompatActivity
         setContentView(R.layout.activity_read_news);
         Toolbar toolBar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolBar);
-//        getActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         listView = (ListView) findViewById(R.id.readListView);
         buttonBackToMenu = (Button) findViewById(R.id.buttonBackTOMenu);
         listView.setOnItemClickListener(this);
@@ -73,6 +74,26 @@ public class ReadNewsActivity extends AppCompatActivity
         customAdapter = new CustomAdapter(this,newsList);
         listView.setAdapter(customAdapter);
 
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                // User chose the "Settings" item, show the app settings UI...
+                return true;
+
+            case R.id.action_home:
+                Intent intent = new Intent(this,MainActivity.class);
+                startActivity(intent);
+                finish();
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
     }
 /*        pDialog = new ProgressDialog(this);
         // Showing progress dialog before making http request
