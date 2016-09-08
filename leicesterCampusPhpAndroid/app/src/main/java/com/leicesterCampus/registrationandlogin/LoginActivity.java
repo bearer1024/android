@@ -42,9 +42,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         // every control _ID; AndroidManifest.xml;
-        Toolbar toolBar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolBar);
-
         //session : be used to save user's status;
         session = new Session(LoginActivity.this);
         progressDialog = new ProgressDialog(this);

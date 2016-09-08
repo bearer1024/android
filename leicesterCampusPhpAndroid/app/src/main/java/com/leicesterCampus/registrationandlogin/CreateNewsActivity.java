@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -47,8 +48,6 @@ public class CreateNewsActivity extends AppCompatActivity implements View.OnClic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_news);
-        Toolbar toolBar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolBar);
         title = (EditText)findViewById(R.id.title);
         content = (EditText)findViewById(R.id.newsContent);
 //        link = (EditText)findViewById(R.id.relativeLink);
@@ -96,15 +95,19 @@ public class CreateNewsActivity extends AppCompatActivity implements View.OnClic
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu_main,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_settings:
+            /*case R.id.action_settings:
                 // User chose the "Settings" item, show the app settings UI...
-                return true;
+                return true;*/
 
             case R.id.action_home:
-                Intent intent = new Intent(CreateNewsActivity.this,
-                    MainActivity.class);
+                Intent intent = new Intent(this,MainActivity.class);
                 startActivity(intent);
                 finish();
                 return true;

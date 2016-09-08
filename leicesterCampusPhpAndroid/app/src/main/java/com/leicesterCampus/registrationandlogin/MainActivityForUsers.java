@@ -18,9 +18,6 @@ public class MainActivityForUsers extends AppCompatActivity {
         setContentView(R.layout.activity_main_activity_for_users);
 
 
-            Toolbar toolBar = (Toolbar) findViewById(R.id.toolbar);
-            setSupportActionBar(toolBar);
-
             //reading news logic
             btnReadNews = (Button)findViewById(R.id.readNewsButton);
             btnReadNews.setOnClickListener(new View.OnClickListener(){
