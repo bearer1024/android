@@ -28,6 +28,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.HashMap;
+
 public class MapsActivity extends AppCompatActivity implements
         OnMapReadyCallback,
         GoogleMap.OnMyLocationButtonClickListener,
@@ -38,6 +40,7 @@ public class MapsActivity extends AppCompatActivity implements
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
     private boolean mPermissionDenied = false;
     private GoogleMap mMap;
+    private Session session;
     private static final LatLng uniOfLeicester = new LatLng(52.62113745, -1.1245235);
     private static final LatLng uniLibrary = new LatLng(52.6205083, -1.1245617);
     private static final LatLng uniBennetBuilding = new LatLng(52.62314004599841,-1.1229104921221733);
@@ -111,6 +114,7 @@ public class MapsActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         topTextView = (TextView)findViewById(R.id.topTextView);
+        session = new Session(getApplicationContext());
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -132,9 +136,20 @@ public class MapsActivity extends AppCompatActivity implements
                 return true;*/
 
             case R.id.action_home:
-                Intent intent = new Intent(this,MainActivity.class);
-                startActivity(intent);
-                finish();
+                HashMap<String,String> hashMap = session.getUserDetails();
+                String userId = hashMap.get(Session.KEY_ID);
+                if(userId != null){
+                    if(userId.equals("9")){
+                        Intent intent = new Intent(this,MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }else{
+                        Intent intent = new Intent(this,MainActivityForUsers.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                }
+
                 return true;
 
             default:
