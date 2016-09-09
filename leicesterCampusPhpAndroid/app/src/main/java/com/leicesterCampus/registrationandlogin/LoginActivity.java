@@ -168,7 +168,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getApplicationContext(),
                         error.getMessage(), Toast.LENGTH_LONG).show();
-                hideDialog();//  system crash problem
+//                hideDialog();//  system crash problem
             }
             // ending
         }) {

@@ -81,15 +81,22 @@ public class ReadNewsActivity extends AppCompatActivity
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        String userId = getUserId();
         switch (item.getItemId()) {
             /*case R.id.action_settings:
                 // User chose the "Settings" item, show the app settings UI...
                 return true;*/
 
             case R.id.action_home:
-                Intent intent = new Intent(this,MainActivity.class);
-                startActivity(intent);
-                finish();
+                if(userId.equals("9")){
+                    Intent intent = new Intent(this,MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }else {
+                    Intent intent = new Intent(this,MainActivityForUsers.class);
+                    startActivity(intent);
+                    finish();
+                }
                 return true;
 
             default:
@@ -98,6 +105,14 @@ public class ReadNewsActivity extends AppCompatActivity
                 return super.onOptionsItemSelected(item);
 
         }
+    }
+
+
+    private String getUserId (){
+        session = new Session(getApplicationContext());
+        HashMap<String,String> hashMap = session.getUserDetails();
+        String userId = hashMap.get(Session.KEY_ID);
+        return userId;
     }
 /*        pDialog = new ProgressDialog(this);
         // Showing progress dialog before making http request

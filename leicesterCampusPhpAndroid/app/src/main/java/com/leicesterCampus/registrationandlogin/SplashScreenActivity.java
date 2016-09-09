@@ -14,12 +14,15 @@ public class SplashScreenActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // TODO Auto-generated method stub
+        //set a window without title and full screen.
+
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.splash_screen);
         session = new Session(SplashScreenActivity.this);
         new Handler().postDelayed(new Runnable() {
