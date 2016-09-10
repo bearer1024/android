@@ -8,6 +8,8 @@ import android.os.Handler;
 import android.view.Window;
 import android.view.WindowManager;
 
+import java.util.HashMap;
+
 public class SplashScreenActivity extends Activity {
 
     private Session session;
@@ -31,10 +33,19 @@ public class SplashScreenActivity extends Activity {
             @Override
             public void run() {
                 if (session.getLoggedIn()) {
-                    Intent i = new Intent(SplashScreenActivity.this,
-                            MainActivity.class);
-                    startActivity(i);
-                    finish();
+                    HashMap<String,String> hashMap = session.getUserDetails();
+                    String userId = hashMap.get(Session.KEY_ID);
+                    if(userId != null){
+                        if(userId.equals("9")){
+                            Intent intent = new Intent(SplashScreenActivity.this,MainActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }else{
+                            Intent intent = new Intent(SplashScreenActivity.this,MainActivityForUsers.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    }
                 } else {
                     Intent i = new Intent(SplashScreenActivity.this,
                             LoginActivity.class);
